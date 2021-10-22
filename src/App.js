@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+          <Header/>
+            <Switch> 
+              <Route exact path='/' component={CurrentWeather}></Route>
+              {/* <Route exact path='/forecast' component={Forecast}></Route>
+              <Route exact path='/cityWeather' component={CityWeather}></Route>
+              <Route exact path='/weatherStation' component={WeatherStation}></Route>
+              <Route exact path='/tidalLength' component={TidalLength}></Route>
+              <Route exact path='/airQuality' component={AirQuality}></Route> */}
+            </Switch> 
+      </div>
+    </Router>
   );
 }
 
