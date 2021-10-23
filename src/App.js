@@ -11,8 +11,8 @@ import Forecast from './components/Forecast/Forecast';
 // import CityWeather from './components/CityWeather/CityWeather';
 import AirQuality from './components/AirQuality/AirQuality';
 import WeatherStation from './components/WeatherStation/WeatherStation';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
+// import Register from './components/Register/Register';
+// import Login from './components/Login/Login';
 import axios from "axios";
 
 
@@ -23,10 +23,10 @@ function App() {
   const [airquality,setAirquality]=useState([])
   const [station,setStation]=useState([])
 
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
+  // const [lat, setLat] = useState(null);
+  // const [lng, setLng] = useState(null);
 
-  const [token, setToken] = useState(1);
+  // const [token, setToken] = useState(1);
   // const [status, setStatus] = useState(null);
 
 
@@ -52,103 +52,103 @@ function App() {
 //     getLocation()
 // },[])
 
-  useEffect(()=>{
-    async function getCoords(){
-      const pos = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
+  // useEffect(()=>{
+  //   async function getCoords(){
+  //     const pos = await new Promise((resolve, reject) => {
+  //       navigator.geolocation.getCurrentPosition(resolve, reject);
+  //     });
   
-      return {
-        long: pos.coords.longitude,
-        lat: pos.coords.latitude,
-      };
+  //     return {
+  //       long: pos.coords.longitude,
+  //       lat: pos.coords.latitude,
+  //     };
+  //   }
+
+  //   const coords =getCoords().then((res)=>{
+  //     console.log("Response=",res);
+  //     setLat(res.lat);
+  //     setLng(res.long);
+  //     return res
+  //   });
+  //   const a=Array(coords)
+  //   console.log("Coords=",coords);
+  //   console.log("type=",typeof coords);
+  //   console.log("a=",a);
+  //   // setLat(coords.lat);
+  //   // setLng(coords.long);
+  // },[])
+
+  // console.log("Latitude=",lat);
+  // console.log("Longitude=",lng);
+
+
+  useEffect(()=>{
+    console.log("useEffect called");
+    async function fetchData(){
+        const options = {
+                method: 'GET',
+                url: 'https://community-open-weather-map.p.rapidapi.com/weather',
+                params: {
+                    q: 'London,uk',
+                    lat: '0',
+                    lon: '0',
+                    // callback: 'test',
+                    id: '2172797',
+                    lang: 'null',
+                    units: 'imperial',
+                    mode: 'json'
+                },
+                headers: {
+                    'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+                    'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
+                }
+            };
+        const request=await axios.request(options)
+        console.log("Weather Request=",request.data);
+        setWeather(request.data)
+        // return request
     }
+    fetchData();
+},[])
 
-    const coords =getCoords().then((res)=>{
-      console.log("Response=",res);
-      setLat(res.lat);
-      setLng(res.long);
-      return res
-    });
-    const a=Array(coords)
-    console.log("Coords=",coords);
-    console.log("type=",typeof coords);
-    console.log("a=",a);
-    // setLat(coords.lat);
-    // setLng(coords.long);
-  },[])
+useEffect(()=>{
+  console.log("useEffect called");
+  async function fetchData(){
+      const options = {
+              method: 'GET',
+              url: 'https://forecast9.p.rapidapi.com/rapidapi/forecast/London/summary/',
+              headers: {
+                  'x-rapidapi-host': 'forecast9.p.rapidapi.com',
+                  'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
+              }
+          };
+      const request=await axios.request(options)
+      console.log("Forecast Request=",request.data);
+      setForecast(request.data)
+      // return request
+  }
+  fetchData();
+},[])
 
-  console.log("Latitude=",lat);
-  console.log("Longitude=",lng);
-
-
-//   useEffect(()=>{
-//     console.log("useEffect called");
-//     async function fetchData(){
-//         const options = {
-//                 method: 'GET',
-//                 url: 'https://community-open-weather-map.p.rapidapi.com/weather',
-//                 params: {
-//                     q: 'London,uk',
-//                     lat: '0',
-//                     lon: '0',
-//                     // callback: 'test',
-//                     id: '2172797',
-//                     lang: 'null',
-//                     units: 'imperial',
-//                     mode: 'json'
-//                 },
-//                 headers: {
-//                     'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-//                     'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
-//                 }
-//             };
-//         const request=await axios.request(options)
-//         console.log("Weather Request=",request.data);
-//         setWeather(request.data)
-//         // return request
-//     }
-//     fetchData();
-// },[])
-
-// useEffect(()=>{
-//   console.log("useEffect called");
-//   async function fetchData(){
-//       const options = {
-//               method: 'GET',
-//               url: 'https://forecast9.p.rapidapi.com/rapidapi/forecast/London/summary/',
-//               headers: {
-//                   'x-rapidapi-host': 'forecast9.p.rapidapi.com',
-//                   'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
-//               }
-//           };
-//       const request=await axios.request(options)
-//       console.log("Forecast Request=",request.data);
-//       setForecast(request.data)
-//       // return request
-//   }
-//   fetchData();
-// },[])
-
-// useEffect(()=>{
-//   console.log("useEffect called");
-//   async function fetchData(){
-//       const options = {
-//               method: 'GET',
-//               url: 'https://air-quality.p.rapidapi.com/current/airquality',
-//               params:{lat: '35.779', lon: '-78.638', hours: '72'},
-//               headers: {
-//                   'x-rapidapi-host': 'air-quality.p.rapidapi.com',
-//                   'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
-//               }
-//           };
-//       const request=await axios.request(options)
-//       console.log("AirQuality Request=",request.data);
-//       setAirquality(request.data)
-//       // return request
-//   }
-//   fetchData();
-// },[])
+useEffect(()=>{
+  console.log("useEffect called");
+  async function fetchData(){
+      const options = {
+              method: 'GET',
+              url: 'https://air-quality.p.rapidapi.com/current/airquality',
+              params:{lat: '35.779', lon: '-78.638', hours: '72'},
+              headers: {
+                  'x-rapidapi-host': 'air-quality.p.rapidapi.com',
+                  'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
+              }
+          };
+      const request=await axios.request(options)
+      console.log("AirQuality Request=",request.data);
+      setAirquality(request.data)
+      // return request
+  }
+  fetchData();
+},[])
 
 useEffect(()=>{
   console.log("useEffect called");
@@ -170,9 +170,9 @@ useEffect(()=>{
   fetchData();
 },[])
 
-  if(!token) {
-    return <Login/>
-  }
+  // if(!token) {
+  //   return <Login/>
+  // }
 
   return (
     <Router>
