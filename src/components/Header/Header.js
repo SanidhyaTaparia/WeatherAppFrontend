@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div>
             <div className="navbar">
-                <Link to="/currentWeather"><h2> Current Weather </h2></Link>
+                <Link to="/currentWeather"><h2>Current Weather</h2></Link>
                 <Link to="/forecast"><h2>Weather Forecast</h2></Link>
                 <Link to="/cityWeather"><h2>Search Weather By City</h2></Link>
                 <Link to="/weatherStation"><h2>Nearby Weather Stations</h2></Link>
