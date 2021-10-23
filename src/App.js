@@ -19,6 +19,63 @@ function App() {
   const [airquality,setAirquality]=useState([])
   const [station,setStation]=useState([])
 
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  // const [status, setStatus] = useState(null);
+
+
+//   useEffect(()=>{
+//     console.log("useEffect");
+//     async function getLocation() {
+//       if (!navigator.geolocation) {
+//         setStatus('Geolocation is not supported by your browser');
+//       } else {
+//         setStatus('Locating...');
+//         navigator.geolocation.getCurrentPosition((position) => {
+//           setStatus(null);
+//           setLat(position.coords.latitude);
+//           setLng(position.coords.longitude);
+//         }, () => {
+//           setStatus('Unable to retrieve your location');
+//         });
+//       }
+//     }
+
+//     console.log("done");
+
+//     getLocation()
+// },[])
+
+  useEffect(()=>{
+    async function getCoords(){
+      const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+  
+      return {
+        long: pos.coords.longitude,
+        lat: pos.coords.latitude,
+      };
+    }
+
+    const coords =getCoords().then((res)=>{
+      console.log("Response=",res);
+      setLat(res.lat);
+      setLng(res.long);
+      return res
+    });
+    const a=Array(coords)
+    console.log("Coords=",coords);
+    console.log("type=",typeof coords);
+    console.log("a=",a);
+    // setLat(coords.lat);
+    // setLng(coords.long);
+  },[])
+
+  console.log("Latitude=",lat);
+  console.log("Longitude=",lng);
+
+
 //   useEffect(()=>{
 //     console.log("useEffect called");
 //     async function fetchData(){
@@ -73,7 +130,7 @@ function App() {
 //       const options = {
 //               method: 'GET',
 //               url: 'https://air-quality.p.rapidapi.com/current/airquality',
-//               params:{lon: '-73.00597', lat: '40.71427'},
+//               params:{lat: '35.779', lon: '-78.638', hours: '72'},
 //               headers: {
 //                   'x-rapidapi-host': 'air-quality.p.rapidapi.com',
 //                   'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
@@ -107,6 +164,7 @@ function App() {
 //   fetchData();
 // },[])
 
+
   return (
     <Router>
       <div className="App">
@@ -115,9 +173,7 @@ function App() {
             <Switch> 
               <Route exact path='/currentWeather' component={() => (<CurrentWeather weather={weather} />)}></Route>
               <Route exact path='/forecast' component={() => (<Forecast forecast={forecast} />)}></Route>
-              {/* <Route exact path='/cityWeather' component={CityWeather}></Route>*/}
               <Route exact path='/weatherStation' component={() => (<WeatherStation station={station} />)}></Route>
-              {/* <Route exact path='/tidalLength' component={TidalLength}></Route> */}
               <Route exact path='/airQuality' component={() => (<AirQuality airquality={airquality} />)}></Route> 
             </Switch> 
       </div>
