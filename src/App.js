@@ -12,6 +12,7 @@ import Forecast from './components/Forecast/Forecast';
 import AirQuality from './components/AirQuality/AirQuality';
 import WeatherStation from './components/WeatherStation/WeatherStation';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 import axios from "axios";
 
 
@@ -25,7 +26,7 @@ function App() {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
 
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(1);
   // const [status, setStatus] = useState(null);
 
 
@@ -170,7 +171,7 @@ useEffect(()=>{
 },[])
 
   if(!token) {
-    return <Register/>
+    return <Login/>
   }
 
   return (
