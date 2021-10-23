@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios";
 
-const CurrentWeather = () => {
-    const [weatherData,setWeatherData]=useState([])
+const airquality = () => {
+    const [airquality,setAirquality]=useState([])
 
     // const options = {
     // method: 'GET',
@@ -28,7 +28,7 @@ const CurrentWeather = () => {
     //         .then(response => {
     //             let vari=response.data
     //             console.log(vari["coord"].lat);
-    //             setWeatherData(vari);
+    //             setairquality(vari);
     //         }).catch(function (error) {
     //             console.error(error);
     //     });
@@ -39,25 +39,16 @@ const CurrentWeather = () => {
         async function fetchData(){
             const options = {
                     method: 'GET',
-                    url: 'https://community-open-weather-map.p.rapidapi.com/weather',
-                    params: {
-                        q: 'London,uk',
-                        lat: '0',
-                        lon: '0',
-                        // callback: 'test',
-                        id: '2172797',
-                        lang: 'null',
-                        units: 'imperial',
-                        mode: 'json'
-                    },
+                    url: 'https://air-quality.p.rapidapi.com/current/airquality',
+                    params:{lon: '-73.00597', lat: '40.71427'},
                     headers: {
-                        'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+                        'x-rapidapi-host': 'air-quality.p.rapidapi.com',
                         'x-rapidapi-key': '47cd745e3amshab32e2942dd9b87p1e6fa4jsn14c37e1f98f1'
                     }
                 };
             const request=await axios.request(options)
             console.log("Request=",request);
-            setWeatherData(request.data)
+            setAirquality(request.data)
             // return request
         }
         fetchData();
@@ -72,34 +63,30 @@ const CurrentWeather = () => {
 
     // console.log("A=",a);
 
-    // setWeatherData(a);
+    // setairquality(a);
     
-    console.log("Weather=",weatherData);
-    
+    console.log("Weather=",setairquality);
+
     return (
         <div>
-            if(typeof weatherData !== 'undefined') ){
+            if(typeof airquality !== 'undefined') ){
                 <div>
-                    <h1>Location: {weatherData["name"]}</h1>
-                    <h2>Latitude: {weatherData["coord"].lat}</h2>
-                    <h2>Longitude: {weatherData["coord"].lon}</h2>
+                    <h1>Location: {airquality["cityname"]}</h1>
                     <table>
                         <tr>
-                            <th>Temperature</th>
-                            <th>Minimum Temperature</th>
-                            <th>Maximum Temperature</th>
-                            <th>Humidity</th>
-                            <th>Pressure</th>
-                            <th>Wind Speed</th>
+                            <th>Air Quality Index</th>
+                            <th>Ozone Level (in micrograms/cubic metres)</th>
+                            <th>Sulphe Dioxide Level (in micrograms/cubic metres)</th>
+                            <th>Nitrogen Dioxide Level (in micrograms/cubic metres)</th>
+                            <th>Carbon Monoxide Level (in micrograms/cubic metres)</th>
                         </tr>
 
                         <tr>
-                            <td>{weatherData["main"].temp}</td>
-                            <td>{weatherData["main"].temp_min}</td>
-                            <td>{weatherData["main"].temp_max}</td>
-                            <td>{weatherData["main"].humidity}</td>
-                            <td>{weatherData["main"].pressure}</td>
-                            <td>{weatherData["wind"].speed}</td>
+                           <td>{airquality.data[0].aqi}</td>
+                           <td>{airquality.data[0].o3}</td>
+                           <td>{airquality.data[0].so2}</td>
+                           <td>{airquality.data[0].no2}</td>
+                           <td>{airquality.data[0].co}</td>
                         </tr>
                     </table>
                 </div>
@@ -108,4 +95,4 @@ const CurrentWeather = () => {
     )
 }
 
-export default CurrentWeather
+export default airquality

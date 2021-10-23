@@ -12,8 +12,9 @@ function App() {
     <Router>
       <div className="App">
           <Header/>
+          <h1>This is header</h1>
             <Switch> 
-              <Route exact path='/' component={CurrentWeather}></Route>
+              <Route exact path='/currentWeather' component={CurrentWeather}></Route>
               {/* <Route exact path='/forecast' component={Forecast}></Route>
               <Route exact path='/cityWeather' component={CityWeather}></Route>
               <Route exact path='/weatherStation' component={WeatherStation}></Route>
