@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Forecast = () => {
-    const [forecast,setForecast]=useState([])
+    // const [forecast,setForecast]=useState([])
 
     // // const options = {
     // // method: 'GET',
