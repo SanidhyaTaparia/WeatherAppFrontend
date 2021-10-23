@@ -1,8 +1,11 @@
-import React,{useState,useEffect} from 'react'
-import axios from "axios";
+import React from 'react'
+// import axios from "axios";
 
-const CurrentWeather = () => {
-    const [weatherData,setWeatherData]=useState([])
+const CurrentWeather = ({weather}) => {
+    const k={weather}
+    const w=k.weather
+    console.log("w=",w);
+    console.log("Type of w=",typeof w);
 
     // // const options = {
     // // method: 'GET',
@@ -106,7 +109,6 @@ const CurrentWeather = () => {
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             }
         </div>

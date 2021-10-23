@@ -1,5 +1,4 @@
-import React,{useState,useEffect} from 'react'
-import axios from "axios";
+import React from 'react'
 
 const Forecast = () => {
     const [forecast,setForecast]=useState([])
@@ -68,28 +67,28 @@ const Forecast = () => {
 
     return (
         <div>
-            if(typeof forecast !== 'undefined') ){
+             {/* if(typeof forecast !== 'undefined') ){ */}
                 <div>
-                    <h1>Location: {forecast["location"].name}</h1>
-                    <h2>Latitude: {forecast["location"].ccoordinates.latitude}</h2>
-                    <h2>Longitude: {forecast["location"].longitude}</h2>
+                    <h1>Location: {f["location"].name}</h1>
+                    <h2>Latitude: {f["location"].coordinates.latitude}</h2>
+                    <h2>Longitude: {f["location"].coordinates.longitude}</h2>
                     <table>
                         <tr>
                             <th>Minimum Temperature</th>
                             <th>Maximum Temperature</th>
                             <th>Min Wind Speed</th>
-                            <th>MAx Wind Speed</th>
+                            <th>Max Wind Speed</th>
                         </tr>
 
                         <tr>
-                            <td>{forecast["forecast"].forecast.items[0].temperature.min}</td>
-                            <td>{forecast["forecast"].forecast.items[0].temperature.max}</td>
-                            <td>{forecast["forecast"].forecast.items[0].wind.min}</td>
-                            <td>{forecast["forecast"].forecast.items[0].wind.max}</td>
+                            <td>{f["forecast"].items[0].temperature.min}</td>
+                            <td>{f["forecast"].items[0].temperature.max}</td>
+                            <td>{f["forecast"].items[0].wind.min}</td>
+                            <td>{f["forecast"].items[0].wind.max}</td>
                         </tr>
                     </table>
                 </div>
-            }
+            {/* }  */}
         </div>
     )
 }
