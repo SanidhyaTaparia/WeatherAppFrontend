@@ -86,12 +86,12 @@ const CurrentWeather = () => {
                         <h2 className="block font-black md:text-3xl">Latitude: 52.321</h2>
                         <h2 className="block font-black md:text-3xl">Longitude: 23.563</h2>
                     </div>
-                    <div className="table w-full table-auto border-collapse border-4 border-green-800 contents-center">
+                    <div className="shadow-2xl pt-3 table w-full bg-white table-auto border-collapse border-4 border-green-800 rounded-lg contents-center">
                         <div className="table-row-group">
                             <div className="table-row">
                                 <div className="table-cell border border-green-600">Temperature</div>
-                                <div className="table-cell border border-green-600">Minimum Temperature</div>
-                                <div className="table-cell border border-green-600">Maximum Temperature</div>
+                                <div className="table-cell border border-green-600">Min Temp</div>
+                                <div className="table-cell border border-green-600">Max Temp</div>
                                 <div className="table-cell border border-green-600">Humidity</div>
                                 <div className="table-cell border border-green-600">Pressure</div>
                                 <div className="table-cell border border-green-600">Wind Speed</div>

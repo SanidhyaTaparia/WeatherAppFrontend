@@ -67,8 +67,8 @@ const Forecast = () => {
     // console.log("Weather=",setForecast);
 
     return (
-        <div>
-            if(typeof forecast !== 'undefined') ){
+        <div className="bg-blue-200 p-5">
+            {/* if(typeof forecast !== 'undefined') ){
                 <div>
                     <h1>Location: {forecast["location"].name}</h1>
                     <h2>Latitude: {forecast["location"].ccoordinates.latitude}</h2>
@@ -89,7 +89,28 @@ const Forecast = () => {
                         </tr>
                     </table>
                 </div>
-            }
+            } */}
+            <div className="block m-5 text-center">
+                <h1 className="block font-black md:text-3xl">Location: London</h1>
+                <h2 className="block font-black md:text-3xl">Latitude: 52.321</h2>
+                <h2 className="block font-black md:text-3xl">Longitude: 23.563</h2>
+            </div>
+            <div className="shadow-2xl pt-3 table w-full bg-white table-auto border-collapse border-4 border-green-800 rounded-lg contents-center">
+                <div className="table-row-group">
+                    <div className="table-row">
+                        <div className="table-cell border border-green-600">Min Temp</div>
+                        <div className="table-cell border border-green-600">Max Temp</div>
+                        <div className="table-cell border border-green-600">Min Wind Speed</div>
+                        <div className="table-cell border border-green-600">Max Wind Speed</div>
+                    </div>
+                    <div className="table-row">
+                        <div className="table-cell border border-green-600">27</div>
+                        <div className="table-cell border border-green-600">22</div>
+                        <div className="table-cell border border-green-600">31</div>
+                        <div className="table-cell border border-green-600">87</div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
