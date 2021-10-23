@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import Forecast from './components/Forecast/Forecast';
+import CityWeather from './components/CityWeather/CityWeather';
 import AirQuality from './components/AirQuality/AirQuality';
 import WeatherStation from './components/WeatherStation/WeatherStation';
 import axios from "axios";
@@ -15,7 +16,8 @@ import axios from "axios";
 
 function App() {
   const [weather,setWeather]=useState([])
-  const [forecast,setForecast]=useState([])
+  const [forecast, setForecast] = useState([])
+  const [cityWeather, setCityWeather] = useState([])
   const [airquality,setAirquality]=useState([])
   const [station,setStation]=useState([])
 
@@ -173,6 +175,7 @@ function App() {
             <Switch> 
               <Route exact path='/currentWeather' component={() => (<CurrentWeather weather={weather} />)}></Route>
               <Route exact path='/forecast' component={() => (<Forecast forecast={forecast} />)}></Route>
+              <Route exact path='/cityWeather' component={() => (<CityWeather cityWeather={cityWeather} />)}></Route>
               <Route exact path='/weatherStation' component={() => (<WeatherStation station={station} />)}></Route>
               <Route exact path='/airQuality' component={() => (<AirQuality airquality={airquality} />)}></Route> 
             </Switch> 
