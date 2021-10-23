@@ -11,6 +11,7 @@ import Forecast from './components/Forecast/Forecast';
 // import CityWeather from './components/CityWeather/CityWeather';
 import AirQuality from './components/AirQuality/AirQuality';
 import WeatherStation from './components/WeatherStation/WeatherStation';
+import Register from './components/Register/Register';
 import axios from "axios";
 
 
@@ -23,6 +24,8 @@ function App() {
 
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
+
+  const [token, setToken] = useState();
   // const [status, setStatus] = useState(null);
 
 
@@ -166,6 +169,9 @@ useEffect(()=>{
   fetchData();
 },[])
 
+  if(!token) {
+    return <Register/>
+  }
 
   return (
     <Router>
