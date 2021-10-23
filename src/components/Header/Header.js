@@ -24,10 +24,10 @@ const Header = () => {
                       to-blue-500
                       text-transparent
                       bg-clip-text font-bold md:text-5xl sm:text-3xl">Weather App</h1>
-                <div className="loginRegister inline-block float-right sm:text-xs md:text-lg">
+                {/* <div className="loginRegister inline-block float-right sm:text-xs md:text-lg">
                     <button className="rounded-md font-medium text-blue-500 hover:text-white bg-white hover:bg-blue-500 border-2 border-blue-500 ring-4 ring-blue-500 ring-opacity-50 m-3">Register</button>
                     <button className="rounded-md font-medium text-green-500 hover:text-white bg-white hover:bg-green-500 border-2 border-green-500 ring-4 ring-green-500 ring-opacity-50 m-3">Login</button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
