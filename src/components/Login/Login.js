@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useState } from 'react'
 
 export default function Login(addtoken) {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
   const API_BASE_URL="https://weather--backend.herokuapp.com/"
   const [user_name, setuser_name] = useState("");
   const [user_pass, setuser_pass] = useState("");
@@ -17,7 +18,7 @@ export default function Login(addtoken) {
     setuser_name(user_name.trim());
     toast.info("Checking credentials...",{position: toast.POSITION.BOTTOM_RIGHT})
     axios
-        .post(API_BASE_URL + "login/",{
+        .post(proxyurl +API_BASE_URL + "login/",{
             email: user_name,
             password: user_pass
         })

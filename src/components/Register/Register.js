@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useState } from 'react'
 
 export default function Register() {
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -53,7 +54,7 @@ export default function Register() {
       }
 
       axios.post(
-        'https://weather--backend.herokuapp.com/register/',
+        proxyurl +'https://weather--backend.herokuapp.com/register/',
         dataForApiRequest,
       )
         .then(function ({ data, status }) {
