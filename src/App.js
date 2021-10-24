@@ -13,6 +13,7 @@ import AirQuality from './components/AirQuality/AirQuality';
 import WeatherStation from './components/WeatherStation/WeatherStation';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+// import City from './components/City/City';
 import axios from "axios";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -183,6 +184,7 @@ useEffect(()=>{
             <Switch> 
               <Route exact path='/login' component={() => (<Login addtoken={setToken}/>)}></Route>
               <Route exact path='/register' component={() => (<Register/>)}></Route>
+              {/* <Route exact path='/city' component={() => (<City/>)}></Route> */}
               <Route exact path='/currentWeather' component={() => (<CurrentWeather weather={weather} />)}></Route>
               <Route exact path='/forecast' component={() => (<Forecast forecast={forecast} />)}></Route>
               {/* <Route exact path='/cityWeather' component={() => (<CityWeather cityWeather={cityWeather} />)}></Route> */}
