@@ -17,6 +17,8 @@ const Header = () => {
                     <Link to="/weatherStation"><h2 className="text-white hover:text-blue-500 transition ease-in-out duration-500">Nearby Weather Stations</h2></Link>
                     <Link to="/tidalLength"><h2 className="text-white hover:text-blue-500 transition ease-in-out duration-500">Tidal Length </h2></Link>
                     <Link to="/airQuality"><h2 className="text-white hover:text-blue-500 transition ease-in-out duration-500">Air Quality</h2></Link>
+                    <Link to="/login"><h2 className="text-white hover:text-blue-500 transition ease-in-out duration-500">Login</h2></Link>
+                    <Link to="/register"><h2 className="text-white hover:text-blue-500 transition ease-in-out duration-500">Register</h2></Link>
                 </ul>
                 <h1 className="font-sans inline-block
                       bg-gradient-to-r
