@@ -14,7 +14,7 @@ import WeatherStation from './components/WeatherStation/WeatherStation';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -24,34 +24,34 @@ function App() {
   const [airquality,setAirquality]=useState([])
   const [station,setStation]=useState([])
 
-  // const [lat, setLat] = useState(null);
-  // const [lng, setLng] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
 
   const [token, setToken] = useState(1);
-  // const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(null);
 
 
-//   useEffect(()=>{
-//     console.log("useEffect");
-//     async function getLocation() {
-//       if (!navigator.geolocation) {
-//         setStatus('Geolocation is not supported by your browser');
-//       } else {
-//         setStatus('Locating...');
-//         navigator.geolocation.getCurrentPosition((position) => {
-//           setStatus(null);
-//           setLat(position.coords.latitude);
-//           setLng(position.coords.longitude);
-//         }, () => {
-//           setStatus('Unable to retrieve your location');
-//         });
-//       }
-//     }
+  useEffect(()=>{
+    console.log("useEffect");
+    async function getLocation() {
+      if (!navigator.geolocation) {
+        setStatus('Geolocation is not supported by your browser');
+      } else {
+        setStatus('Locating...');
+        navigator.geolocation.getCurrentPosition((position) => {
+          setStatus(null);
+          setLat(position.coords.latitude);
+          setLng(position.coords.longitude);
+        }, () => {
+          setStatus('Unable to retrieve your location');
+        });
+      }
+    }
 
-//     console.log("done");
+    console.log(lat,lng);
 
-//     getLocation()
-// },[])
+    getLocation()
+},[])
 
   // useEffect(()=>{
   //   async function getCoords(){
@@ -90,9 +90,9 @@ function App() {
                 method: 'GET',
                 url: 'https://community-open-weather-map.p.rapidapi.com/weather',
                 params: {
-                    q: 'London,uk',
-                    lat: '0',
-                    lon: '0',
+                    // q: 'London,uk',
+                    lat: lat,
+                    lon: lng,
                     // callback: 'test',
                     id: '2172797',
                     lang: 'null',
@@ -109,11 +109,12 @@ function App() {
         setWeather(request.data)
         // return request
     }
+    if(lat)
     fetchData();
-},[])
+},[lat])
 
 useEffect(()=>{
-  console.log("useEffect called");
+  console.log(lat,lng,"************1");
   async function fetchData(){
       const options = {
               method: 'GET',
@@ -128,16 +129,17 @@ useEffect(()=>{
       setForecast(request.data)
       // return request
   }
+  if(lat)
   fetchData();
-},[])
+},[lat])
 
 useEffect(()=>{
-  console.log("useEffect called");
+  console.log(lat,lng,"******2");
   async function fetchData(){
       const options = {
               method: 'GET',
               url: 'https://air-quality.p.rapidapi.com/current/airquality',
-              params:{lat: '35.779', lon: '-78.638', hours: '72'},
+              params:{lat: lat, lon: lng, hours: '72'},
               headers: {
                   'x-rapidapi-host': 'air-quality.p.rapidapi.com',
                   'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
@@ -148,8 +150,9 @@ useEffect(()=>{
       setAirquality(request.data)
       // return request
   }
+  if(lat)
   fetchData();
-},[])
+},[lat])
 
 useEffect(()=>{
   console.log("useEffect called");
@@ -157,7 +160,7 @@ useEffect(()=>{
       const options = {
               method: 'GET',
               url: 'https://meteostat.p.rapidapi.com/stations/nearby',
-              params: {lat: '51.5085', lon: '-0.1257'},
+              params: {lat: lat, lon: lng},
               headers: {
                   'x-rapidapi-host': 'meteostat.p.rapidapi.com',
                   'x-rapidapi-key': '92892ab54amshf55ba9722bf8547p1eedb8jsn24eaeb644984'
@@ -168,8 +171,9 @@ useEffect(()=>{
       setStation(request.data)
       // return request
   }
+  if(lat)
   fetchData();
-},[])
+},[lat])
 
   // if(!token) {
   //   return <Login/>

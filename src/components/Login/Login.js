@@ -3,14 +3,14 @@ import axios from 'axios';
 // import { Link } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useEffect,useState } from 'react'
+import { useState } from 'react'
 
 export default function Login(addtoken) {
   const API_BASE_URL="https://weather--backend.herokuapp.com/"
   const [user_name, setuser_name] = useState("");
   const [user_pass, setuser_pass] = useState("");
   const loginnow = () => {
-    if (user_name == "" || user_pass == "") {
+    if (user_name === "" || user_pass === "") {
         toast.error("Please fill the empty fields.",{position: toast.POSITION.BOTTOM_RIGHT})
         return;
     }
