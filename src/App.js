@@ -11,10 +11,11 @@ import Forecast from './components/Forecast/Forecast';
 // import CityWeather from './components/CityWeather/CityWeather';
 import AirQuality from './components/AirQuality/AirQuality';
 import WeatherStation from './components/WeatherStation/WeatherStation';
-// import Register from './components/Register/Register';
-// import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [weather,setWeather]=useState([])
@@ -26,7 +27,7 @@ function App() {
   // const [lat, setLat] = useState(null);
   // const [lng, setLng] = useState(null);
 
-  // const [token, setToken] = useState(1);
+  const [token, setToken] = useState(1);
   // const [status, setStatus] = useState(null);
 
 
@@ -180,12 +181,15 @@ useEffect(()=>{
           <Header/>
           
             <Switch> 
+              <Route exact path='/login' component={() => (<Login addtoken={setToken}/>)}></Route>
+              <Route exact path='/register' component={() => (<Register/>)}></Route>
               <Route exact path='/currentWeather' component={() => (<CurrentWeather weather={weather} />)}></Route>
               <Route exact path='/forecast' component={() => (<Forecast forecast={forecast} />)}></Route>
               {/* <Route exact path='/cityWeather' component={() => (<CityWeather cityWeather={cityWeather} />)}></Route> */}
               <Route exact path='/weatherStation' component={() => (<WeatherStation station={station} />)}></Route>
               <Route exact path='/airQuality' component={() => (<AirQuality airquality={airquality} />)}></Route> 
             </Switch> 
+            <ToastContainer />
       </div>
     </Router>
   );
